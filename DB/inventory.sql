@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         8.0.30 - MySQL Community Server - GPL
--- SO del servidor:              Win64
--- HeidiSQL Versión:             12.1.0.6537
+-- Server version:               8.0.30 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,24 +14,35 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table db_inventory.books
+CREATE TABLE IF NOT EXISTS `books` (
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE armscii8_bin DEFAULT NULL,
+  `author` varchar(255) COLLATE armscii8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando estructura de base de datos para db_inventory
-CREATE DATABASE IF NOT EXISTS `db_inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `db_inventory`;
+-- Dumping data for table db_inventory.books: ~5 rows (approximately)
+DELETE FROM `books`;
+INSERT INTO `books` (`id`, `title`, `author`) VALUES
+	(1, 'Don Quixote', 'Miguel de Cervantes'),
+	(2, 'Moby Dick', 'Herman Melville'),
+	(3, 'War and Peace', 'Leo Tolstoy'),
+	(4, 'paco yunque', 'cesar vallejo');
 
--- Volcando estructura para tabla db_inventory.branches
+-- Dumping structure for table db_inventory.branches
 CREATE TABLE IF NOT EXISTS `branches` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `branch_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `branch_name` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.branches: ~0 rows (aproximadamente)
+-- Dumping data for table db_inventory.branches: ~0 rows (approximately)
 DELETE FROM `branches`;
 
--- Volcando estructura para tabla db_inventory.categories
+-- Dumping structure for table db_inventory.categories
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -41,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla db_inventory.categories: ~20 rows (aproximadamente)
+-- Dumping data for table db_inventory.categories: ~20 rows (approximately)
 DELETE FROM `categories`;
 INSERT INTO `categories` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 	(34, 'Alimentos secos', 1, '2023-04-16 03:14:24', '2023-04-16 03:14:24'),
@@ -65,23 +76,23 @@ INSERT INTO `categories` (`id`, `name`, `status`, `created_at`, `updated_at`) VA
 	(52, 'Artículos para el hogar y jardín', 1, '2023-04-16 03:16:35', '2023-04-16 03:16:35'),
 	(53, 'Productos de conveniencia', 1, '2023-04-16 03:16:41', '2023-04-16 03:16:41');
 
--- Volcando estructura para tabla db_inventory.companies
+-- Dumping structure for table db_inventory.companies
 CREATE TABLE IF NOT EXISTS `companies` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `phone` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `address` text CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.companies: ~0 rows (aproximadamente)
+-- Dumping data for table db_inventory.companies: ~0 rows (approximately)
 DELETE FROM `companies`;
 INSERT INTO `companies` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
-	(1, 'StockInventarios', '9611702915', 'Calle 10 #123, Colonia San Pedro, Ciudad de México, Código Postal 01230.', NULL, '2023-04-17 05:35:09');
+	(1, 'UNA - PUNO', '912691276', 'Universidad Nacional Del Altiplano Puno', NULL, '2024-07-16 00:21:04');
 
--- Volcando estructura para tabla db_inventory.customers
+-- Dumping structure for table db_inventory.customers
 CREATE TABLE IF NOT EXISTS `customers` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `customer_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -92,29 +103,31 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla db_inventory.customers: ~16 rows (aproximadamente)
+-- Dumping data for table db_inventory.customers: ~16 rows (approximately)
 DELETE FROM `customers`;
 INSERT INTO `customers` (`id`, `customer_name`, `email`, `phone`, `address`, `status`, `created_at`, `updated_at`) VALUES
-	(37, 'Juan Pérez', 'juan.perez@example.com', '555-1234', 'Calle 1, Colonia Centro, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(38, 'María Rodríguez', 'maria.rodriguez@example.com', '555-5678', 'Calle 2, Colonia Condesa, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(39, 'Pedro García', 'pedro.garcia@example.com', '555-9876', 'Calle 3, Colonia Roma, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(40, 'Ana Hernández', 'ana.hernandez@example.com', '5552468', 'Calle 4, Colonia Narvarte, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 04:36:26'),
-	(41, 'Jorge Martínez', 'jorge.martinez@example.com', '555-3691', 'Calle 5, Colonia Santa Fe, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(42, 'Laura González', 'laura.gonzalez@example.com', '555-5555', 'Calle 6, Colonia Polanco, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(43, 'Miguel Álvarez', 'miguel.alvarez@example.com', '555-7777', 'Calle 7, Colonia Juárez, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(44, 'Carmen Flores', 'carmen.flores@example.com', '555-1212', 'Calle 8, Colonia Coyoacán, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(45, 'José García', 'jose.garcia@example.com', '555-7777', 'Calle 9, Colonia Del Valle, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(46, 'Fernanda González', 'fernanda.gonzalez@example.com', '555-2345', 'Calle 10, Colonia San Ángel, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(47, 'Diego Torres', 'diego.torres@example.com', '555-4567', 'Calle 11, Colonia Santa María la Ribera, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(48, 'Carla Hernández', 'carla.hernandez@example.com', '555-1111', 'Calle 12, Colonia Tabacalera, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(49, 'Raúl Díaz', 'raul.diaz@example.com', '555-2222', 'Calle 13, Colonia Doctores, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(50, 'Sofía García', 'sofia.garcia@example.com', '555-3333', 'Calle 14, Colonia Lindavista, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(51, 'Héctor Jiménez', 'hector.jimenez@example.com', '555-4444', 'Calle 15, Colonia Vallejo, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05'),
-	(52, 'Diana Martínez', 'diana.martinez@example.com', '555-5555', 'Calle 16, Colonia Industrial, Ciudad de México', 1, '2023-04-17 02:08:05', '2023-04-17 02:08:05');
+	(37, 'Juan Pérez', 'juan.perez@example.com', '912557624', 'jr. San Martin - Juliaca', 1, '2023-04-17 02:08:05', '2024-07-16 01:21:08'),
+	(38, 'María Rodríguez', 'maria.rodriguez@example.com', '89157822', 'Parque Pino - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:22:30'),
+	(39, 'Pedro García', 'pedro.garcia@example.com', '97452455', 'UNA - PUNO', 1, '2023-04-17 02:08:05', '2024-07-16 01:24:44'),
+	(40, 'Ana Hernández', 'ana.hernandez@gmail.com', '5552468', 'puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:34:35'),
+	(41, 'Jorge Martínez', 'jorge.martinez@example.com', '91234678', 'Calle 5, jr America - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:19:20'),
+	(42, 'Laura González', 'laura.gonzalez@example.com', '912778524', 'Jr. Tumbes - Juliaca', 1, '2023-04-17 02:08:05', '2024-07-16 01:21:44'),
+	(43, 'Miguel Álvarez', 'miguel.alvarez@example.com', '98908130', 'Jr. Los Incas N° 450 - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:23:34'),
+	(44, 'Carmen Flores', 'carmen.flores@example.com', '9152222', 'Jr. San Martin - Juliaca', 1, '2023-04-17 02:08:05', '2024-07-16 00:30:01'),
+	(45, 'José García', 'jose.garcia@example.com', '91275892', 'jr. Los Incas - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:20:27'),
+	(46, 'Fernanda González', 'fernanda.gonzalez@example.com', '91247250', 'Jr. Los Incas - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 00:32:44'),
+	(47, 'Diego Torres', 'diego.torres@example.com', '9177882255', 'Av. Sol 255 - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 00:31:20'),
+	(48, 'Carla Hernández', 'carla.hernandez@gmail.com', '91275566', 'Calle 12 Juliaca', 1, '2023-04-17 02:08:05', '2024-07-16 01:34:45'),
+	(49, 'Raúl Díaz', 'raul.diaz@example.com', '9447521112', 'Parque la madre  - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:25:33'),
+	(50, 'Sofía García', 'sofia.garcia@example.com', '96682442', 'Av. Costanera - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:26:29'),
+	(51, 'Héctor Jiménez', 'hector.jimenez@example.com', '915232021', 'Av. El Ejercito - Puno', 1, '2023-04-17 02:08:05', '2024-07-16 01:18:46'),
+	(52, 'Diana Martínez', 'diana.martinez@example.com', '915220254', 'Jr. Pierola -Juliaca', 1, '2023-04-17 02:08:05', '2024-07-16 00:30:41'),
+	(53, 'Efrain', 'efrain12@gmail.com', '9120000012', 'puno', 1, '2024-07-16 00:19:07', '2024-07-16 00:19:07'),
+	(54, 'Oliver', 'oliverchoque777@gamil.com', '989081309', 'Universidad Nacional Del Altiplano Puno', 1, '2024-07-16 00:48:34', '2024-07-16 00:48:34');
 
--- Volcando estructura para tabla db_inventory.menus
+-- Dumping structure for table db_inventory.menus
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int NOT NULL DEFAULT '0',
@@ -127,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla db_inventory.menus: ~15 rows (aproximadamente)
+-- Dumping data for table db_inventory.menus: ~15 rows (approximately)
 DELETE FROM `menus`;
 INSERT INTO `menus` (`id`, `parent_id`, `name`, `icon`, `menu_url`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 0, 'Clientes', 'contacts', 'customer.index', 0, '2020-07-29 13:17:51', '2020-07-29 13:17:56'),
@@ -146,15 +159,15 @@ INSERT INTO `menus` (`id`, `parent_id`, `name`, `icon`, `menu_url`, `status`, `c
 	(14, 6, 'Información de la empresa', NULL, 'company.index', 0, '2020-07-29 13:17:43', '2020-07-29 13:17:45'),
 	(15, 6, 'Cambiar la contraseña', NULL, 'password.index', 0, '2020-07-29 13:17:42', '2020-07-29 13:16:37');
 
--- Volcando estructura para tabla db_inventory.migrations
+-- Dumping structure for table db_inventory.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.migrations: ~16 rows (aproximadamente)
+-- Dumping data for table db_inventory.migrations: ~16 rows (approximately)
 DELETE FROM `migrations`;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
@@ -174,40 +187,42 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(15, '2019_02_10_114735_create_menus_table', 6),
 	(16, '2019_02_14_130126_create_companies_table', 7);
 
--- Volcando estructura para tabla db_inventory.password_resets
+-- Dumping structure for table db_inventory.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `token` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.password_resets: ~0 rows (aproximadamente)
+-- Dumping data for table db_inventory.password_resets: ~0 rows (approximately)
 DELETE FROM `password_resets`;
 
--- Volcando estructura para tabla db_inventory.payments
+-- Dumping structure for table db_inventory.payments
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `sell_id` int NOT NULL,
   `customer_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `date` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `paid_in` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bank_information` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `date` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `paid_in` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `bank_information` text CHARACTER SET armscii8 COLLATE armscii8_bin,
   `amount` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `sell_id` (`sell_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.payments: ~2 rows (aproximadamente)
+-- Dumping data for table db_inventory.payments: ~2 rows (approximately)
 DELETE FROM `payments`;
 INSERT INTO `payments` (`id`, `sell_id`, `customer_id`, `user_id`, `date`, `paid_in`, `bank_information`, `amount`, `created_at`, `updated_at`) VALUES
 	(56, 51, 40, 12, '2023-04-19', 'efectivo', NULL, 412, '2023-04-17 05:34:02', '2023-04-17 05:34:02'),
-	(57, 51, 40, 12, '2023-04-20', 'efectivo', NULL, 0.5, '2023-04-17 05:34:22', '2023-04-17 05:34:22');
+	(57, 51, 40, 12, '2023-04-20', 'efectivo', NULL, 0.5, '2023-04-17 05:34:22', '2023-04-17 05:34:22'),
+	(58, 53, 54, 12, '2024-07-16', 'efectivo', NULL, 148, '2024-07-16 00:49:30', '2024-07-16 00:49:30'),
+	(59, 52, 53, 12, '2024-07-16', 'efectivo', NULL, 12.5, '2024-07-16 00:52:51', '2024-07-16 00:52:51');
 
--- Volcando estructura para tabla db_inventory.permissions
+-- Dumping structure for table db_inventory.permissions
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int NOT NULL,
@@ -215,9 +230,9 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=744 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=744 DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.permissions: ~45 rows (aproximadamente)
+-- Dumping data for table db_inventory.permissions: ~45 rows (approximately)
 DELETE FROM `permissions`;
 INSERT INTO `permissions` (`id`, `role_id`, `menu_id`, `created_at`, `updated_at`) VALUES
 	(124, 5, 1, '2019-02-23 00:54:16', '2019-02-23 00:54:16'),
@@ -266,7 +281,7 @@ INSERT INTO `permissions` (`id`, `role_id`, `menu_id`, `created_at`, `updated_at
 	(742, 2, 15, '2021-07-05 20:00:38', '2021-07-05 20:00:38'),
 	(743, 2, 6, '2021-07-05 20:00:38', '2021-07-05 20:00:38');
 
--- Volcando estructura para tabla db_inventory.products
+-- Dumping structure for table db_inventory.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
@@ -279,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla db_inventory.products: ~185 rows (aproximadamente)
+-- Dumping data for table db_inventory.products: ~185 rows (approximately)
 DELETE FROM `products`;
 INSERT INTO `products` (`id`, `category_id`, `product_name`, `details`, `status`, `created_at`, `updated_at`) VALUES
 	(30, 34, 'Arroz blanco de grano largo', 'Este arroz es conocido por su textura suave y delicada, y es ideal para preparar una gran variedad de platos, desde arroz con frijoles hasta sushi. El arroz blanco de grano largo es una excelente fuente de carbohidratos y se puede cocinar fácilmente en una olla de arroz o en una cacerola.', 1, '2023-04-16 03:18:28', '2023-04-16 05:54:34'),
@@ -468,16 +483,16 @@ INSERT INTO `products` (`id`, `category_id`, `product_name`, `details`, `status`
 	(233, 46, 'Impresora HP Envy 6055', 'Impresora HP Envy 6055 con capacidad de imprimir en color, escanear y copiar, y conexión inalámbrica', 1, '2023-05-02 15:30:00', '2023-05-02 15:30:00'),
 	(234, 46, 'Audífonos inalámbricos Apple AirPods Pro', 'Audífonos inalámbricos Apple AirPods Pro con cancelación de ruido activa, sonido de alta calidad y resistencia al agua y al sudor', 1, '2023-05-02 15:30:00', '2023-05-02 15:30:00');
 
--- Volcando estructura para tabla db_inventory.roles
+-- Dumping structure for table db_inventory.roles
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_name` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.roles: ~4 rows (aproximadamente)
+-- Dumping data for table db_inventory.roles: ~4 rows (approximately)
 DELETE FROM `roles`;
 INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
 	(2, 'Superadministrador', '2019-02-12 03:59:54', '2023-04-17 04:53:28'),
@@ -485,7 +500,7 @@ INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
 	(4, 'Vendedor', '2019-02-13 01:34:11', '2023-04-17 04:36:08'),
 	(5, 'Controlador', '2019-02-13 05:53:15', '2023-04-17 04:41:36');
 
--- Volcando estructura para tabla db_inventory.sells
+-- Dumping structure for table db_inventory.sells
 CREATE TABLE IF NOT EXISTS `sells` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -493,21 +508,24 @@ CREATE TABLE IF NOT EXISTS `sells` (
   `branch_id` int NOT NULL DEFAULT '1',
   `total_amount` double NOT NULL,
   `paid_amount` double NOT NULL DEFAULT '0',
-  `sell_date` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sell_date` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin DEFAULT NULL,
   `discount_amount` double NOT NULL DEFAULT '0',
   `payment_method` tinyint NOT NULL DEFAULT '0',
   `payment_status` tinyint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.sells: ~0 rows (aproximadamente)
+-- Dumping data for table db_inventory.sells: ~0 rows (approximately)
 DELETE FROM `sells`;
 INSERT INTO `sells` (`id`, `user_id`, `customer_id`, `branch_id`, `total_amount`, `paid_amount`, `sell_date`, `discount_amount`, `payment_method`, `payment_status`, `created_at`, `updated_at`) VALUES
-	(51, 12, 40, 1, 412.5, 412.5, '2023-04-17', 0, 2, 1, '2023-04-17 05:33:31', '2023-04-17 05:34:22');
+	(51, 12, 40, 1, 412.5, 412.5, '2023-04-17', 0, 2, 1, '2023-04-17 05:33:31', '2023-04-17 05:34:22'),
+	(52, 12, 53, 1, 12.5, 12.5, '2024-07-15', 0, 2, 1, '2024-07-16 00:19:07', '2024-07-16 00:52:51'),
+	(53, 12, 54, 1, 148, 148, '2024-07-16', 0, 2, 1, '2024-07-16 00:48:34', '2024-07-16 00:49:30'),
+	(54, 12, 54, 1, 223, 0, '2024-07-15', 0, 2, 0, '2024-07-16 01:44:34', '2024-07-16 01:44:34');
 
--- Volcando estructura para tabla db_inventory.sell_details
+-- Dumping structure for table db_inventory.sell_details
 CREATE TABLE IF NOT EXISTS `sell_details` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `stock_id` int NOT NULL,
@@ -516,9 +534,9 @@ CREATE TABLE IF NOT EXISTS `sell_details` (
   `category_id` int NOT NULL,
   `vendor_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `chalan_no` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `selling_date` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chalan_no` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `selling_date` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `customer_id` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `sold_quantity` int NOT NULL,
   `buy_price` double NOT NULL,
   `sold_price` double NOT NULL,
@@ -537,28 +555,31 @@ CREATE TABLE IF NOT EXISTS `sell_details` (
   KEY `vendor_id` (`vendor_id`),
   KEY `user_id` (`user_id`),
   KEY `sell_id` (`sell_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.sell_details: ~0 rows (aproximadamente)
+-- Dumping data for table db_inventory.sell_details: ~0 rows (approximately)
 DELETE FROM `sell_details`;
 INSERT INTO `sell_details` (`id`, `stock_id`, `sell_id`, `product_id`, `category_id`, `vendor_id`, `user_id`, `chalan_no`, `selling_date`, `customer_id`, `sold_quantity`, `buy_price`, `sold_price`, `total_buy_price`, `total_sold_price`, `discount`, `discount_type`, `discount_amount`, `created_at`, `updated_at`) VALUES
-	(70, 55, 51, 30, 34, 81, 12, '2023-04-16', '2023-04-17', '40', 33, 9.8, 12.5, 323.40000000000003, 412.5, 0, 1, 0, '2023-04-17 05:33:31', '2023-04-17 05:33:31');
+	(70, 55, 51, 30, 34, 81, 12, '2023-04-16', '2023-04-17', '40', 33, 9.8, 12.5, 323.40000000000003, 412.5, 0, 1, 0, '2023-04-17 05:33:31', '2023-04-17 05:33:31'),
+	(71, 55, 52, 30, 34, 77, 12, '2023-04-16', '2024-07-15', '53', 1, 9.8, 12.5, 9.8, 12.5, 0, 1, 0, '2024-07-16 00:19:07', '2024-07-16 00:19:07'),
+	(73, 57, 53, 30, 34, 77, 12, '2024-07-15', '2024-07-16', '54', 5, 20, 30, 100, 148, 2, 2, 2, '2024-07-16 00:49:04', '2024-07-16 00:49:04'),
+	(74, 58, 54, 68, 37, 81, 12, '2024-07-15', '2024-07-15', '54', 5, 30, 45, 150, 223, 2, 1, 2, '2024-07-16 01:44:34', '2024-07-16 01:44:34');
 
--- Volcando estructura para tabla db_inventory.stocks
+-- Dumping structure for table db_inventory.stocks
 CREATE TABLE IF NOT EXISTS `stocks` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
-  `product_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_code` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `product_id` int NOT NULL,
   `vendor_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `chalan_no` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chalan_no` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `buying_price` double NOT NULL,
   `selling_price` double NOT NULL,
   `discount` double NOT NULL DEFAULT '0',
   `stock_quantity` int NOT NULL,
   `current_quantity` int NOT NULL DEFAULT '0',
-  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `note` text CHARACTER SET armscii8 COLLATE armscii8_bin,
   `status` tinyint NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -567,35 +588,39 @@ CREATE TABLE IF NOT EXISTS `stocks` (
   KEY `product_id` (`product_id`),
   KEY `vendor_id` (`vendor_id`),
   KEY `stock_quantity` (`stock_quantity`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.stocks: ~2 rows (aproximadamente)
+-- Dumping data for table db_inventory.stocks: ~2 rows (approximately)
 DELETE FROM `stocks`;
 INSERT INTO `stocks` (`id`, `category_id`, `product_code`, `product_id`, `vendor_id`, `user_id`, `chalan_no`, `buying_price`, `selling_price`, `discount`, `stock_quantity`, `current_quantity`, `note`, `status`, `created_at`, `updated_at`) VALUES
-	(55, 34, '1681681567', 30, 81, 12, '2023-04-16', 9.8, 12.5, 0, 100, 67, NULL, 1, '2023-04-16 22:46:07', '2023-04-17 05:33:31'),
-	(56, 37, '1681705778', 67, 81, 12, '2023-04-16', 189.99, 249.99, 0, 48, 48, NULL, 1, '2023-04-17 05:29:38', '2023-04-17 05:29:38');
+	(55, 34, '1681681567', 30, 77, 12, '2023-04-16', 9.8, 20, 0, 105, 71, NULL, 1, '2023-04-16 22:46:07', '2024-07-16 01:46:08'),
+	(56, 37, '1681705778', 67, 81, 12, '2023-04-16', 189.99, 249.99, 0, 48, 48, NULL, 1, '2023-04-17 05:29:38', '2023-04-17 05:29:38'),
+	(57, 34, '1721089511', 30, 77, 12, '2024-07-15', 20, 30, 0, 5, 0, 'Alimentos en mes de julio', 1, '2024-07-16 00:25:11', '2024-07-16 00:49:04'),
+	(58, 37, '1721094172', 68, 81, 12, '2024-07-15', 30, 45, 0, 150, 145, 'bebidas', 1, '2024-07-16 01:42:52', '2024-07-16 01:44:34'),
+	(59, 34, '1721094368', 30, 77, 12, '2024-07-15', 15, 20, 0, 150, 150, 'arroz mes de julio', 1, '2024-07-16 01:46:08', '2024-07-16 01:46:08');
 
--- Volcando estructura para tabla db_inventory.users
+-- Dumping structure for table db_inventory.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `email` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `password` varchar(191) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
   `branch_id` int NOT NULL DEFAULT '1',
   `role_id` int NOT NULL DEFAULT '1',
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET armscii8 COLLATE armscii8_bin DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
--- Volcando datos para la tabla db_inventory.users: ~1 rows (aproximadamente)
+-- Dumping data for table db_inventory.users: ~2 rows (approximately)
 DELETE FROM `users`;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `branch_id`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(12, 'Diego Carmona Bernal', 'carmonabernaldiego@gmail.com', '$2y$10$W/nqTuN0X.JaGtGBkpw01OTSL0I3aShYL9QusP8Q5kIZ2AviqQHKC', 1, 2, '6zd4CxMA9RCTnuJaxtyhByrBYJsPfV9GtAB4pJE3Ht6YTsIvQ7ETjUVO1jlv', '2020-07-31 17:27:25', '2023-04-17 05:20:18');
+	(1, 'hola', 'hola@gmail.com', '123456', 1, 1, NULL, NULL, NULL),
+	(12, 'Efrain Saul Mayta Yujra', 'efrain12@gmail.com', '$2y$10$W/nqTuN0X.JaGtGBkpw01OTSL0I3aShYL9QusP8Q5kIZ2AviqQHKC', 1, 2, 'u44QnQRGeLieCMExceM81soyA10GjW7r16039kVUpSbGCX5EdGR1fPicLkCi', '2020-07-31 17:27:25', '2024-07-13 22:57:49');
 
--- Volcando estructura para tabla db_inventory.vendors
+-- Dumping structure for table db_inventory.vendors
 CREATE TABLE IF NOT EXISTS `vendors` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -607,19 +632,19 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla db_inventory.vendors: ~11 rows (aproximadamente)
+-- Dumping data for table db_inventory.vendors: ~10 rows (approximately)
 DELETE FROM `vendors`;
 INSERT INTO `vendors` (`id`, `name`, `phone`, `email`, `address`, `created_at`, `updated_at`) VALUES
-	(76, 'La Michoacana', '55-1234-5678', 'contacto@lamichoacana.com.mx', 'Av. Insurgentes Sur 1647, Col. San José Insurgentes, CDMX', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(77, 'El Paraiso del Helado', '55-8765-4321', 'info@elparaisodelhelado.com.mx', 'Calle Gral. Emiliano Zapata 54, Col. San Francisco Chilpan, CDMX', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(78, 'La Flor de Michoacán', '33-3333-3333', 'ventas@laflordemichoacan.com.mx', 'Calle Sinaloa 1437, Col. Providencia, Guadalajara, Jalisco', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(79, 'Paletería la Victoria', '81-1111-1111', 'contacto@paleterialavictoria.com.mx', 'Av. Chapultepec Sur 177, Col. Americana, Monterrey, Nuevo León', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(80, 'Helados Santa Clara', '55-5555-5555', 'contacto@santaclara.com.mx', 'Av. de los Insurgentes Sur 1395, Col. Insurgentes Mixcoac, CDMX', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(81, 'La Imperial', '33-2222-2222', 'info@laimperial.com.mx', 'Av. México 2500, Col. Ladrón de Guevara, Guadalajara, Jalisco', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(82, 'Helados Holanda', '55-9876-5432', 'contacto@heladosholanda.com.mx', 'Av. Revolución 1928, Col. San Ángel, CDMX', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(83, 'Nieve Garrafa', '55-1111-2222', 'ventas@nievegarrafa.com.mx', 'Av. Toluca 124, Col. Olivar de los Padres, CDMX', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(84, 'La Tapatía Helados', '33-4444-4444', 'contacto@latapatiahelados.com.mx', 'Calle Francisco Javier Mina 20, Col. Centro, Guadalajara, Jalisco', '2023-04-16 21:44:30', '2023-04-16 21:44:30'),
-	(85, 'La Tradicional', '81-2222-2222', 'info@latradicional.com.mx', 'Calle Padre Mier 1241, Col. Centro, Monterrey, Nuevo León', '2023-04-16 21:44:30', '2023-04-16 21:44:30');
+	(76, 'La Michoacana', '978545212', 'contacto@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:39:19'),
+	(77, 'El Paraiso del Helado', '9782445314', 'info@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:38:55'),
+	(78, 'La Flor de Michoacán', '978542235', 'ventas@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:38:23'),
+	(79, 'Paletería la Victoria', '978865452', 'contacto@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:37:55'),
+	(80, 'Helados Santa Clara', '978854223', 'contacto@gmail.com', 'Arequipa', '2023-04-16 21:44:30', '2024-07-16 01:37:27'),
+	(81, 'La Imperial', '9848220001', 'info@gmail.com', 'Cusco', '2023-04-16 21:44:30', '2024-07-16 01:36:44'),
+	(82, 'Helados Holanda', '945314222', 'contacto@heladosholanda.com.mx', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:33:59'),
+	(83, 'Nieve Garrafa', '935467812', 'ventas@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:36:13'),
+	(84, 'La Tapatía Helados', '9457215656', 'contacto@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:36:02'),
+	(85, 'La Tradicional', '912789420', 'info@gmail.com', 'Lima', '2023-04-16 21:44:30', '2024-07-16 01:35:34');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
